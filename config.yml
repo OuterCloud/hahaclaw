@@ -1,0 +1,165 @@
+# OpenClaw 配置文件
+# 基于官方文档: https://openclaw.ai/
+
+# ============================================
+# 基础配置
+# ============================================
+
+# OpenClaw 安装路径 (相对或绝对路径)
+install_path: ./openclaw
+
+# OpenClaw 版本 (latest 或指定版本号如 v2026.2.6)
+openclaw_version: latest
+
+# ============================================
+# 目录配置
+# ============================================
+
+# 数据目录 (存储对话历史、配置等)
+data_dir: ./data
+
+# 日志目录
+log_dir: ./logs
+
+# ============================================
+# 网关配置
+# ============================================
+
+# 服务端口 (默认 18789)
+port: 18789
+
+# 绑定地址 (127.0.0.1 仅本机访问, 0.0.0.0 允许外部访问)
+host: 127.0.0.1
+
+# ============================================
+# 日志配置
+# ============================================
+
+# 日志级别 (DEBUG, INFO, WARNING, ERROR)
+log_level: INFO
+
+# 日志保留天数
+log_retention_days: 7
+
+# ============================================
+# LLM Provider 配置
+# ============================================
+# 注意: API 密钥应配置在 .openclaw/.env 文件中
+# 支持的 Provider:
+#   - Anthropic Claude (推荐)
+#   - OpenAI GPT
+#   - Google Gemini
+#   - 本地 Ollama
+
+# 默认 LLM Provider
+default_provider: anthropic
+
+# 模型选择
+models:
+  anthropic: claude-3-5-sonnet-20241022
+  openai: gpt-4o
+  google: gemini-2.0-flash-exp
+
+# ============================================
+# 消息平台配置
+# ============================================
+# 支持的平台:
+#   - Telegram
+#   - WhatsApp
+#   - Discord
+#   - Slack
+#   - Signal
+#   - iMessage (仅 macOS)
+#   - Microsoft Teams
+#   - Google Chat
+#   - 飞书/Lark (推荐国内用户)
+#   - 钉钉 (DingTalk)
+
+# 启用的消息平台
+enabled_platforms:
+  - telegram
+  - feishu # 飞书
+  # - dingtalk
+  # - whatsapp
+  # - discord
+  # - slack
+
+# 飞书配置说明
+# 1. 访问飞书开放平台: https://open.feishu.cn/
+# 2. 创建企业自建应用
+# 3. 获取 App ID 和 App Secret
+# 4. 配置权限和事件订阅
+# 详细步骤见: docs/FEISHU_SETUP.md
+
+# ============================================
+# 速率限制和成本控制
+# ============================================
+
+# 每分钟最大请求数
+rate_limit_per_minute: 20
+
+# 每日最大 API 成本 (美元)
+rate_limit_daily_cost: 5.00
+
+# 每用户每日最大消息数
+rate_limit_per_user_daily: 100
+
+# ============================================
+# 安全配置
+# ============================================
+
+# 是否启用自动更新
+auto_update: false
+
+# 允许的用户 ID 列表 (为空则允许所有用户)
+# 格式: platform:user_id
+allowed_users:
+  []
+  # - telegram:123456789
+  # - discord:987654321
+
+# ============================================
+# 高级配置
+# ============================================
+
+# 最大工作线程数
+max_workers: 4
+
+# 缓存大小 (MB)
+cache_size: 1024
+
+# 对话上下文窗口大小
+context_window_size: 10
+
+# 是否启用流式响应
+enable_streaming: true
+
+# 超时设置 (秒)
+timeout:
+  api_request: 60
+  message_response: 120
+
+# ============================================
+# 数据库配置
+# ============================================
+
+database:
+  type: sqlite
+  path: ./data/openclaw.db
+  # 对于生产环境，可以使用 PostgreSQL
+  # type: postgresql
+  # host: localhost
+  # port: 5432
+  # database: openclaw
+  # username: openclaw
+  # password: your_password
+
+# ============================================
+# 备份配置
+# ============================================
+
+backup:
+  enabled: true
+  interval_hours: 24
+  retention_days: 30
+  path: ./backups

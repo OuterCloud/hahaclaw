@@ -1,0 +1,43 @@
+# OpenClaw 安装目录
+openclaw/
+.openclaw/
+
+# 日志文件
+logs/
+*.log
+
+# 数据目录
+data/
+
+# 备份目录
+backups/
+
+# 进程 ID 文件
+*.pid
+
+# 临时文件
+*.tmp
+*.temp
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+
+# 备份文件
+*.bak
+*.backup
